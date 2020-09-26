@@ -41,6 +41,7 @@
 extern "C"
 {
 #include <linux/videodev2.h>
+#include <libavutil/imgutils.h>
 #include <libavcodec/avcodec.h>
 #include <libswscale/swscale.h>
 #include <libavutil/mem.h>
@@ -119,6 +120,7 @@ class UsbCam {
   void mjpeg2rgb(char *MJPEG, int len, char *RGB, int NumPixels);
   void process_image(const void * src, int len, camera_image_t *dest);
   int read_frame();
+  int decode(AVCodecContext *avctx, AVFrame *frame, int *got_frame, AVPacket *pkt);
   void uninit_device(void);
   void init_read(unsigned int buffer_size);
   void init_mmap(void);
