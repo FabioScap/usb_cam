@@ -410,7 +410,7 @@ int UsbCam::init_mjpeg_decoder(int image_width, int image_height)
   }
   return 1;
 }
-
+//https://blogs.gentoo.org/lu_zero/2016/03/29/new-avcodec-api/
 int UsbCam::decode(AVCodecContext *avctx, AVFrame *frame, int *got_frame, AVPacket *pkt)
 {
   int ret;
@@ -1236,7 +1236,7 @@ void UsbCam::set_v4l_parameter(const std::string& param, const std::string& valu
     pclose(stream);
     // any output should be an error
     if (output.length() > 0)
-      ROS_WARN("%s", output.c_str());
+      ROS_DEBUG("%s", output.c_str());
   }
   else
     ROS_WARN("usb_cam_node could not run '%s'", cmd.c_str());
